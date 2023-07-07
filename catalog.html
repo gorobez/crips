@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Catalog</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230707183314">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Стилі для body -->
+	<style>
+		.lock body {
+			overflow: hidden;
+			touch-action: none;
+			overscroll-behavior: none;
+		}
+
+		.loading body {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.loaded body {
+			transition: opacity 0.7s ease 1.5s;
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+
+	<!-- Стилі для прелоадера -->
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
+
+		/* Головний блок */
+		.fls-preloader {
+			pointer-events: none;
+			z-index: -1;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Блок з елементами */
+		.fls-preloader__body {
+			padding: 0.93rem;
+			max-width: 31.25rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		#loader {
+			display: block;
+			position: relative;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		#loader:before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 3s linear infinite;
+			animation: spin 3s linear infinite;
+		}
+
+		#loader:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 1.5s linear infinite;
+			animation: spin 1.5s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<button type="button" class="menu__icon icon-menu"><span></span></button>
+				<a href="home.html" class="header__logo"><img src="img/logo.svg" alt="logo"></a>
+				<div class="header__menu menu">
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li class="menu__item"><a href="home.html" class="menu__link _active">home</a></li>
+							<li class="menu__item"><a href="catalog.html" class="menu__link">Shop</a></li>
+							<li class="menu__item"><a href="article.html" class="menu__link">blog</a></li>
+							<li class="menu__item"><a href="sale.html" class="menu__link">Sale</a></li>
+							<li class="menu__item"><a data-goto-header data-goto="footer" class="menu__link">contact us</a></li>
+						</ul>
+						<button data-search-button type="button" class="menu__search"><span class="_icon-search">search</span></button>
+						<form data-da=".menu__body, 991.98, 0" action="#" class="menu__form form-menu">
+							<input maxlength="50" name="search" autocomplete="off" placeholder="Search" required class="form-menu__search">
+							<button type="button" class="form-menu__button _icon-search"></button>
+						</form>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<ul data-da=".menu__body, 767.98" class="header__acount acount-header">
+						<li class="acount-header__item"><a href="#" class="acount-header__link">SIGN IN</a></li>
+						<li class="acount-header__item"><a href="createacount.html" class="acount-header__link">CREATE AN ACCOUNT</a></li>
+					</ul>
+					<a href="wishlist.html" class="header__favorite _icon-favorite"><span></span></a>
+					<div class="header__cart cart-header">
+						<a href="cart.html" class="cart-header__icon _icon-cart"><span></span></a>
+						<div class="cart-header__body">
+
+							<ul class="cart-header__list">
+								<li class="cart-header__cart-text">Shopping Cart</li>
+								<li class="cart-header__cart-price"><span>0,00</span> EUR</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</header>
+		<main class="catalog">
+			<section data-prlx-parent data-smooth="1" data-center="center" class="catalog__limits limits-page">
+				<div class="limits-page__container">
+					<div class="limits-page__image">
+						<picture><source srcset="img/catalog/catalog_limits.webp" type="image/webp"><img src="img/catalog/catalog_limits.jpg" alt="image"></picture>
+					</div>
+					<div data-prlx data-coefficient="7" class="limits-page__body">
+						<h2 class="limits-page__text title">shoping without limits.
+						</h2>
+						<div class="limits-page__subtext">You can choose the best option for you, and it does not matter
+							whether you are in Prague or San Francisco. We will
+							deliver your purchase anywhere!</div>
+						<a href="#" class="limits-page__button button">shop now</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="catalog__filter filter-catalog">
+				<div class="filter-catalog__container">
+					<div data-spollers="767.98,max" class="filter-catalog__side">
+						<div class="filter-catalog__applied applied-filters" id="applied-filters">
+							<div class="applied-filters__header">
+								<h4 class="applied-filters__title">Filter:</h4>
+								<button class="applied-filters-button _icon-deletefilter" id="reset-filters">Reset
+									All</button>
+							</div>
+							<div id="filter-list">
+								<div class="applied-filter-brand">
+									<h4 class="applied-filter-title">Brand:</h4>
+									<div class="applied-list" data-filter-type="brand"></div>
+								</div>
+								<div class="applied-filter-size">
+									<h4 class="applied-filter-title">Size:</h4>
+									<div class="applied-list" data-filter-type="size"></div>
+								</div>
+								<div class="applied-filter-dress">
+									<h4 class="applied-filter-title">Dress length:</h4>
+									<div class="applied-list" data-filter-type="dress-option"></div>
+								</div>
+								<div class="applied-filter-color">
+									<h4 class="applied-filter-title">Color:</h4>
+									<div class="applied-list" data-filter-type="color"></div>
+								</div>
+								<div class="applied-filter-price">
+									<h4 class="applied-filter-title">Price:</h4>
+									<div class="applied-list" data-filter-type="price"></div>
+								</div>
+							</div>
+						</div>
+						<button data-spoller type="button" class="filter-catalog__button-filter-mobile _icon-select">Filter</button>
+						<div class="filter-catalog__wrapper-mobile">
+							<div data-spollers class="filter-catalog__filters" id="filters">
+								<div class="filter-catalog__filter">
+									<button type="button" data-spoller class="filter-catalog__title">Brand</button>
+									<div>
+										<div class="filter-catalog__items">
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="state" data-error="Ошибка" class="checkbox__input" type="checkbox" value="state" name="brand">
+												<label for="state" class="checkbox__label"><span class="checkbox__text">State</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="cooper" data-error="Ошибка" class="checkbox__input" type="checkbox" value="cooper" name="brand">
+												<label for="cooper" class="checkbox__label"><span class="checkbox__text">Cooper</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="bardot" data-error="Ошибка" class="checkbox__input" type="checkbox" value="bardot" name="brand">
+												<label for="bardot" class="checkbox__label"><span class="checkbox__text">Bardot</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="alfani" data-error="Ошибка" class="checkbox__input" type="checkbox" value="alfani" name="brand">
+												<label for="alfani" class="checkbox__label"><span class="checkbox__text">Alfani</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="cece" data-error="Ошибка" class="checkbox__input" type="checkbox" value="cece" name="brand">
+												<label for="cece" class="checkbox__label"><span class="checkbox__text">Cece</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="donnaricco" data-error="Ошибка" class="checkbox__input" type="checkbox" value="donnaricco" name="brand">
+												<label for="donnaricco" class="checkbox__label"><span class="checkbox__text">Donna
+														ricco</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="filter-catalog__filter">
+									<button type="button" data-spoller class="filter-catalog__title">Size</button>
+									<div>
+										<div class="filter-catalog__size-items">
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w25" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w25" name="size">
+												<label for="w25" class="checkbox-size__label"><span class="checkbox-size__text">w25</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w26" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w26" name="size">
+												<label for="w26" class="checkbox-size__label"><span class="checkbox-size__text">w26</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w27" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w27" name="size">
+												<label for="w27" class="checkbox-size__label"><span class="checkbox-size__text">w27</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w28" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w28" name="size">
+												<label for="w28" class="checkbox-size__label"><span class="checkbox-size__text">w28</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w29" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w29" name="size">
+												<label for="w29" class="checkbox-size__label"><span class="checkbox-size__text">w29</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w30" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w30" name="size">
+												<label for="w30" class="checkbox-size__label"><span class="checkbox-size__text">w30</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w31" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w31" name="size">
+												<label for="w31" class="checkbox-size__label"><span class="checkbox-size__text">w31</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w32" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w32" name="size">
+												<label for="w32" class="checkbox-size__label"><span class="checkbox-size__text">w32</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w33" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w33" name="size">
+												<label for="w33" class="checkbox-size__label"><span class="checkbox-size__text">w33</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w34" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w34" name="size">
+												<label for="w34" class="checkbox-size__label"><span class="checkbox-size__text">w34</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w35" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w35" name="size">
+												<label for="w35" class="checkbox-size__label"><span class="checkbox-size__text">w35</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w36" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w36" name="size">
+												<label for="w36" class="checkbox-size__label"><span class="checkbox-size__text">w36</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w38" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w38" name="size">
+												<label for="w38" class="checkbox-size__label"><span class="checkbox-size__text">w38</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w40" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w40" name="size">
+												<label for="w40" class="checkbox-size__label"><span class="checkbox-size__text">w40</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w42" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w42" name="size">
+												<label for="w42" class="checkbox-size__label"><span class="checkbox-size__text">w42</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w44" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w44" name="size">
+												<label for="w44" class="checkbox-size__label"><span class="checkbox-size__text">w44</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w46" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w46" name="size">
+												<label for="w46" class="checkbox-size__label"><span class="checkbox-size__text">w46</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w48" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w48" name="size">
+												<label for="w48" class="checkbox-size__label"><span class="checkbox-size__text">w48</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w50" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w50" name="size">
+												<label for="w50" class="checkbox-size__label"><span class="checkbox-size__text">w50</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-size">
+												<input id="w52" data-error="Ошибка" class="checkbox-size__input" type="checkbox" value="w52" name="size">
+												<label for="w52" class="checkbox-size__label"><span class="checkbox-size__text">w52</span></label>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								<div class="filter-catalog__filter">
+									<button type="button" data-spoller class="filter-catalog__title">Dress
+										length</button>
+									<div>
+										<div class="filter-catalog__items">
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="short" data-error="Ошибка" class="checkbox__input" type="checkbox" value="short" name="dress-option">
+												<label for="short" class="checkbox__label"><span class="checkbox__text">Short</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="kneelength" data-error="Ошибка" class="checkbox__input" type="checkbox" value="kneelength" name="dress-option">
+												<label for="kneelength" class="checkbox__label"><span class="checkbox__text">Knee
+														length</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="hightlow" data-error="Ошибка" class="checkbox__input" type="checkbox" value="hightlow" name="dress-option">
+												<label for="hightlow" class="checkbox__label"><span class="checkbox__text">Hight
+														low</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="long" data-error="Ошибка" class="checkbox__input" type="checkbox" value="long" name="dress-option">
+												<label for="long" class="checkbox__label"><span class="checkbox__text">Long</span></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox">
+												<input id="midi" data-error="Ошибка" class="checkbox__input" type="checkbox" value="midi" name="dress-option">
+												<label for="midi" class="checkbox__label"><span class="checkbox__text">Midi</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="filter-catalog__color-filter">
+									<button type="button" data-spoller class="filter-catalog__title">Color</button>
+									<div>
+										<div class="filter-catalog__color-items">
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="black" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="black" name="color">
+												<label for="black" class="checkbox-color__label checkbox-color__label--black"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="darkblue" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="darkblue" name="color">
+												<label for="darkblue" class="checkbox-color__label checkbox-color__label--darkblue"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="green" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="green" name="color">
+												<label for="green" class="checkbox-color__label checkbox-color__label--green"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="darkgray" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="darkgray" name="color">
+												<label for="darkgray" class="checkbox-color__label checkbox-color__label--darkgray"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="blue" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="blue" name="color">
+												<label for="blue" class="checkbox-color__label checkbox-color__label--blue"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="pink" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="pink" name="color">
+												<label for="pink" class="checkbox-color__label checkbox-color__label--pink"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="brown" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="brown" name="color">
+												<label for="brown" class="checkbox-color__label checkbox-color__label--brown"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="gray" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="gray" name="color">
+												<label for="gray" class="checkbox-color__label checkbox-color__label--gray"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="orange" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="orange" name="color">
+												<label for="orange" class="checkbox-color__label checkbox-color__label--orange"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="beige" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="beige" name="color">
+												<label for="beige" class="checkbox-color__label checkbox-color__label--beige"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="lightgreen" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="lightgreen" name="color">
+												<label for="lightgreen" class="checkbox-color__label checkbox-color__label--lightgreen"></label>
+											</div>
+											<div class="filter-catalog__checkbox checkbox-color">
+												<input id="burgundy" data-error="Ошибка" class="checkbox-color__input" type="checkbox" value="burgundy" name="color">
+												<label for="burgundy" class="checkbox-color__label checkbox-color__label--burgundy"></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="filter-catalog__price-filter">
+									<button type="button" data-spoller class="filter-catalog__title">Price
+										Range</button>
+									<div>
+										<div class="filter-catalog__range-values">
+											<div class="filter-catalog__range-value">
+												<input id="min" type="text"> <!-- меньшее установленное значение -->
+											</div>
+											<div class="filter-catalog__range-value">
+												<input class="filter-catalog__range-value" id="max" type="text">
+												<!-- большее установленное значение -->
+											</div>
+										</div>
+										<div class="filter-catalog__range-slider">
+											<div id="range"></div> <!-- элемент слайдера диапазона -->
+										</div>
+									</div>
+								</div>
+								<div class="filter-catalog__btn-wrapper">
+									<button class="filter-catalog__button button" id="apply-filters">Apply</button>
+								</div>
+								<div class="filter-catalog__about">
+									<button type="button" data-spoller class="filter-catalog__title">About
+										Dresses</button>
+									<p class="filter-catalog__text">
+										Every day we're gonna be dropping the latest trends to help you nail every
+										Summer
+										sitch. Whether it's a graduation, your
+										mate's wedding, or just a cute day at the races with the gals, our occasion
+										dresses
+										have got you covered. Not looking
+										for something fancy? No stress. We've got day dresses for days (aka bodycon
+										dresses,
+										t-shirt dresses, oversized shirt
+										dresses).
+									</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="filter-catalog__products products" id="products">
+						<!-- Row1 -->
+						<article data-product="1" class="products__item product-shop" data-brand="cooper" data-size="w26 w28 w42" data-dress-option="midi" data-color="blue pink brown" data-price="100">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">100,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="green" class="product-shop-color product-shop-color--green"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="2" class="products__item product-shop" data-brand="cooper" data-size="w27 w28 w30" data-dress-option="midi" data-color="blue pink brown" data-price="235">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="3" class="products__item product-shop" data-brand="state" data-size="w27 w28 w31" data-dress-option="long" data-color="gray darkblue orange" data-price="90">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="orange" class="product-shop-color product-shop-color--orange"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="4" class="products__item product-shop" data-brand="cooper" data-size="w27 w28 w32" data-dress-option="kneelength" data-color="darkblue beige darkgray" data-price="139">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row2 -->
+						<article data-product="5" class="products__item product-shop" data-brand="bardot" data-size="w27 w28 w33" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="156">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Bardot</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">156,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="lightgreen" class="product-shop-color product-shop-color--lightgreen"></button>
+									<button data-color="burgundy" class="product-shop-color product-shop-color--burgundy"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="6" class="products__item product-shop" data-brand="alfani" data-size="w27 w28 w34" data-dress-option="kneelength" data-color="darkgray black beige" data-price="233">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Alfani</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">233,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="7" class="products__item product-shop" data-brand="cece" data-size="w27 w28 w35" data-dress-option="midi" data-color="blue pink brown" data-price="120">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">cece</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">120,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="8" class="products__item product-shop" data-brand="cooper" data-size="w27 w28 w36" data-dress-option="short" data-color="beige black gray" data-price="128">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">128,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row3 -->
+						<article data-product="9" class="products__item product-shop" data-brand="state" data-size="w27 w28 w38" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="85">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">85,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="green" class="product-shop-color product-shop-color--green"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="10" class="products__item product-shop" data-brand="state" data-size="w27 w28 w40" data-dress-option="long" data-color="blue pink brown" data-price="180">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">180,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="11" class="products__item product-shop" data-brand="state" data-size="w27 w28 w42" data-dress-option="short" data-color="darkblue beige darkgray" data-price="158">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">158,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="12" class="products__item product-shop" data-brand="state" data-size="w27 w28 w44" data-dress-option="short" data-color="darkblue beige darkgray" data-price="158">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">158,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row4 -->
+						<article data-product="13" class="products__item product-shop" data-brand="state" data-size="w27 w28 w46" data-dress-option="short" data-color="darkblue beige darkgray" data-price="158">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">158,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="14" class="products__item product-shop" data-brand="alfani" data-size="w27 w28 w48" data-dress-option="hightlow" data-color="blue pink brown" data-price="235">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Alfani</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="15" class="products__item product-shop" data-brand="cece" data-size="w27 w28 w50" data-dress-option="long" data-color="gray darkblue orange" data-price="90">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cece</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="orange" class="product-shop-color product-shop-color--orange"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="16" class="products__item product-shop" data-brand="donnaricco" data-size="w27 w28 w52" data-dress-option="short" data-color="darkblue beige darkgray" data-price="139">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">donna ricco</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row5 -->
+						<article data-product="17" class="products__item product-shop" data-brand="bardot" data-size="w27 w29 w30" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="156">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Bardot</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">156,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="lightgreen" class="product-shop-color product-shop-color--lightgreen"></button>
+									<button data-color="burgundy" class="product-shop-color product-shop-color--burgundy"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="18" class="products__item product-shop" data-brand="alfani" data-size="w27 w29 w31" data-dress-option="kneelength" data-color="darkgray black beige" data-price="233">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Alfani</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">233,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="19" class="products__item product-shop" data-brand="cece" data-size="w27 w25 w32" data-dress-option="midi" data-color="blue pink brown" data-price="120">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">cece</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">120,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="20" class="products__item product-shop" data-brand="cooper" data-size="w27 w29 w33" data-dress-option="short" data-color="beige black gray" data-price="128">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">128,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row6 -->
+						<article data-product="21" class="products__item product-shop" data-brand="state" data-size="w27 w29 w34" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="85">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">85,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="green" class="product-shop-color product-shop-color--green"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="22" class="products__item product-shop" data-brand="state" data-size="w27 w29 w35" data-dress-option="long" data-color="blue pink brown" data-price="180">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">180,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="23" class="products__item product-shop" data-brand="cooper" data-size="w27 w29 w36" data-dress-option="midi" data-color="gray darkblue orange" data-price="78">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">78,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="orange" class="product-shop-color product-shop-color--orange"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="24" class="products__item product-shop" data-brand="state" data-size="w27 w29 w38" data-dress-option="short" data-color="darkblue beige darkgray" data-price="158">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">158,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row7 -->
+						<article data-product="25" class="products__item product-shop" data-brand="bardot" data-size="w27 w29 w40" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="105">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Bardot</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">105,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="lightgreen" class="product-shop-color product-shop-color--lightgreen"></button>
+									<button data-color="burgundy" class="product-shop-color product-shop-color--burgundy"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="26" class="products__item product-shop" data-brand="alfani" data-size="w27 w29 w42" data-dress-option="kneelength" data-color="darkgray black beige" data-price="96">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Alfani</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">96,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="27" class="products__item product-shop" data-brand="cece" data-size="w27 w29 w44" data-dress-option="midi" data-color="blue pink brown" data-price="240">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">cece</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">240,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="28" class="products__item product-shop" data-brand="cooper" data-size="w27 w29 w46" data-dress-option="short" data-color="beige black gray" data-price="178">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">178,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row8 -->
+						<article data-product="29" class="products__item product-shop" data-brand="bardot" data-size="w27 w29 w48" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="226">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Bardot</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">226,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="lightgreen" class="product-shop-color product-shop-color--lightgreen"></button>
+									<button data-color="burgundy" class="product-shop-color product-shop-color--burgundy"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="30" class="products__item product-shop" data-brand="alfani" data-size="w27 w29 w50" data-dress-option="kneelength" data-color="darkgray black beige" data-price="73">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Alfani</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">73,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="31" class="products__item product-shop" data-brand="cece" data-size="w27 w29 w52" data-dress-option="midi" data-color="blue pink brown" data-price="150">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">cece</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">150,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="blue" class="product-shop-color product-shop-color--blue"></button>
+									<button data-color="pink" class="product-shop-color product-shop-color--pink"></button>
+									<button data-color="brown" class="product-shop-color product-shop-color--brown"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="32" class="products__item product-shop" data-brand="cooper" data-size="w27 w30 w31" data-dress-option="short" data-color="beige black gray" data-price="198">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">198,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="black" class="product-shop-color product-shop-color--black"></button>
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+								</div>
+							</div>
+						</article>
+						<!-- Row9 -->
+						<article data-product="33" class="products__item product-shop" data-brand="state" data-size="w27 w30 w32" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="85">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod7.webp" type="image/webp"><img data-prod-img src="img/products/prod7.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used</h4>
+								</div>
+							</div>
+							<div class="product-shop__prices">
+								<div class="product-shop__price">85,00 EUR</div>
+							</div>
+							<div class="product-shop-colors">
+								<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+								<button data-color="green" class="product-shop-color product-shop-color--green"></button>
+								<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+							</div>
+						</article>
+						<article data-product="34" class="products__item product-shop" data-brand="state" data-size="w27 w30 w33" data-dress-option="short" data-color="darkblue beige darkgray" data-price="125">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used
+									</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">125,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="35" class="products__item product-shop" data-brand="cooper" data-size="w25 w46 w48" data-dress-option="midi" data-color="gray darkblue orange" data-price="78">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">Cooper</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used
+									</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">78,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="gray" class="product-shop-color product-shop-color--gray"></button>
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="orange" class="product-shop-color product-shop-color--orange"></button>
+								</div>
+							</div>
+						</article>
+						<article data-product="36" class="products__item product-shop" data-brand="state" data-size="w27 w28 w44" data-dress-option="short" data-color="darkblue beige darkgray" data-price="125">
+							<div class="product-shop__image">
+								<picture><source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product"></picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to
+										bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">State</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans
+										slim black
+										used
+									</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">125,00 EUR</div>
+								</div>
+								<div class="product-shop-colors">
+									<button data-color="darkblue" class="product-shop-color product-shop-color--darkblue"></button>
+									<button data-color="beige" class="product-shop-color product-shop-color--beige"></button>
+									<button data-color="darkgray" class="product-shop-color product-shop-color--darkgray"></button>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+			<div class="page__advantages advantages-page">
+				<div class="advantages-page__container">
+					<div class="advantages-page__item _icon-checkmark">Duties and Taxes Guaranteed</div>
+					<div class="advantages-page__item _icon-checkmark">Free Express Shipping</div>
+					<div class="advantages-page__item _icon-checkmark">Customer Love</div>
+					<div class="advantages-page__item _icon-checkmark">Easy Returns</div>
+					<div class="advantages-page__item _icon-checkmark">Secure Payment</div>
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<div data-spollers="767.98,max" class="footer__container">
+				<div class="footer__column">
+					<a href="#" class="footer__logo"><img src="img/logo.svg" alt="logo"></a>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">features</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">men</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">Women</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">boys</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">girls</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">new arrivals</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">shoes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">cothes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">accessories</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">Menu</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">About us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">contact us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">my account</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">orders history</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">MY WISHLIST</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">BLOG</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">LOGIN</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">contact us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item">Address:<a href="#" class="menu-footer__link">123 STREET NAME, CITY,
+									ENGLAND</a></li>
+							<li class="menu-footer__item">Phone:<a href="tel:1234567890" class="menu-footer__link">(123)
+									456-7890</a></li>
+							<li class="menu-footer__item">email:<a href="mailto:MAIL@EXAMPLE.COM" class="menu-footer__link">MAIL@EXAMPLE.COM</a></li>
+							<li class="menu-footer__item">working days/hours<a href="#" class="menu-footer__link menu-footer__link--static">MON - SUN /
+									9:00AM - 8:00PM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">follow us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-fb">FACEBOOK</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-tw">TWITTER</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-inst">INSTAGRAM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<div class="footer__label footer__label--static">Join us</div>
+					<form action="#" class="footer__form form-footer">
+						<div class="form-footer__text">Subscribe to our newsletters</div>
+						<div class="form-footer__line">
+							<input type="email" data-req class="form-footer__input" placeholder="Email Address">
+						</div>
+						<div class="form-footer__line">
+							<button type="submit" class="form-footer__button">Subscribe!</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="footer__container-bottom">© 2019. Crisp theme Developed by Belvg</div>
+		</footer>
+	</div>
+	<div id="fls-preloader">
+
+		<!-- Скріпт прелоадера -->
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+						<div class="fls-preloader__body">
+							<div id="loader"></div>
+						</div>
+					</div>`;
+					document.querySelector('html').insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 2000);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20230707183314"></script>
+</body>
+
+</html>

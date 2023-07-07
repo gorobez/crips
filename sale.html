@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Payments</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230707183314">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Стилі для body -->
+	<style>
+		.lock body {
+			overflow: hidden;
+			touch-action: none;
+			overscroll-behavior: none;
+		}
+
+		.loading body {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.loaded body {
+			transition: opacity 0.7s ease 1.5s;
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+
+	<!-- Стилі для прелоадера -->
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
+
+		/* Головний блок */
+		.fls-preloader {
+			pointer-events: none;
+			z-index: -1;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Блок з елементами */
+		.fls-preloader__body {
+			padding: 0.93rem;
+			max-width: 31.25rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		#loader {
+			display: block;
+			position: relative;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		#loader:before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 3s linear infinite;
+			animation: spin 3s linear infinite;
+		}
+
+		#loader:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 1.5s linear infinite;
+			animation: spin 1.5s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<button type="button" class="menu__icon icon-menu"><span></span></button>
+				<a href="home.html" class="header__logo"><img src="img/logo.svg" alt="logo"></a>
+				<div class="header__menu menu">
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li class="menu__item"><a href="home.html" class="menu__link _active">home</a></li>
+							<li class="menu__item"><a href="catalog.html" class="menu__link">Shop</a></li>
+							<li class="menu__item"><a href="article.html" class="menu__link">blog</a></li>
+							<li class="menu__item"><a href="sale.html" class="menu__link">Sale</a></li>
+							<li class="menu__item"><a data-goto-header data-goto="footer" class="menu__link">contact us</a></li>
+						</ul>
+						<button data-search-button type="button" class="menu__search"><span class="_icon-search">search</span></button>
+						<form data-da=".menu__body, 991.98, 0" action="#" class="menu__form form-menu">
+							<input maxlength="50" name="search" autocomplete="off" placeholder="Search" required class="form-menu__search">
+							<button type="button" class="form-menu__button _icon-search"></button>
+						</form>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<ul data-da=".menu__body, 767.98" class="header__acount acount-header">
+						<li class="acount-header__item"><a href="#" class="acount-header__link">SIGN IN</a></li>
+						<li class="acount-header__item"><a href="createacount.html" class="acount-header__link">CREATE AN ACCOUNT</a></li>
+					</ul>
+					<a href="wishlist.html" class="header__favorite _icon-favorite"><span></span></a>
+					<div class="header__cart cart-header">
+						<a href="cart.html" class="cart-header__icon _icon-cart"><span></span></a>
+						<div class="cart-header__body">
+
+							<ul class="cart-header__list">
+								<li class="cart-header__cart-text">Shopping Cart</li>
+								<li class="cart-header__cart-price"><span>0,00</span> EUR</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</header>
+		<main class="sale">
+			<section data-prlx-parent data-smooth="1" data-center="center" class="sale__main main-sale">
+				<div class="main-sale__image">
+					<picture><source srcset="img/main/main_image.webp" type="image/webp"><img src="img/main/main_image.jpg" alt="image"></picture>
+				</div>
+				<div class="main-sale__container">
+					<h2 data-prlx data-coefficient="5" class="main-sale__title title">This page is under development</h2>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div data-spollers="767.98,max" class="footer__container">
+				<div class="footer__column">
+					<a href="#" class="footer__logo"><img src="img/logo.svg" alt="logo"></a>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">features</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">men</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">Women</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">boys</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">girls</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">new arrivals</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">shoes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">cothes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">accessories</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">Menu</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">About us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">contact us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">my account</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">orders history</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">MY WISHLIST</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">BLOG</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">LOGIN</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">contact us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item">Address:<a href="#" class="menu-footer__link">123 STREET NAME, CITY,
+									ENGLAND</a></li>
+							<li class="menu-footer__item">Phone:<a href="tel:1234567890" class="menu-footer__link">(123)
+									456-7890</a></li>
+							<li class="menu-footer__item">email:<a href="mailto:MAIL@EXAMPLE.COM" class="menu-footer__link">MAIL@EXAMPLE.COM</a></li>
+							<li class="menu-footer__item">working days/hours<a href="#" class="menu-footer__link menu-footer__link--static">MON - SUN /
+									9:00AM - 8:00PM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">follow us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-fb">FACEBOOK</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-tw">TWITTER</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-inst">INSTAGRAM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<div class="footer__label footer__label--static">Join us</div>
+					<form action="#" class="footer__form form-footer">
+						<div class="form-footer__text">Subscribe to our newsletters</div>
+						<div class="form-footer__line">
+							<input type="email" data-req class="form-footer__input" placeholder="Email Address">
+						</div>
+						<div class="form-footer__line">
+							<button type="submit" class="form-footer__button">Subscribe!</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="footer__container-bottom">© 2019. Crisp theme Developed by Belvg</div>
+		</footer>
+	</div>
+	<div id="fls-preloader">
+
+		<!-- Скріпт прелоадера -->
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+						<div class="fls-preloader__body">
+							<div id="loader"></div>
+						</div>
+					</div>`;
+					document.querySelector('html').insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 2000);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20230707183314"></script>
+</body>
+
+</html>

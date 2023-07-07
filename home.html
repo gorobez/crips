@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>HomePage</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230707183314">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Стилі для body -->
+	<style>
+		.lock body {
+			overflow: hidden;
+			touch-action: none;
+			overscroll-behavior: none;
+		}
+
+		.loading body {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.loaded body {
+			transition: opacity 0.7s ease 1.5s;
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+
+	<!-- Стилі для прелоадера -->
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+		}
+
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
+
+		/* Головний блок */
+		.fls-preloader {
+			pointer-events: none;
+			z-index: -1;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Блок з елементами */
+		.fls-preloader__body {
+			padding: 0.93rem;
+			max-width: 31.25rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		#loader {
+			display: block;
+			position: relative;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		#loader:before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 3s linear infinite;
+			animation: spin 3s linear infinite;
+		}
+
+		#loader:after {
+			content: "";
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			border-radius: 50%;
+			border: 3px solid transparent;
+			border-top-color: #EB5757;
+			-webkit-animation: spin 1.5s linear infinite;
+			animation: spin 1.5s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				-ms-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<button type="button" class="menu__icon icon-menu"><span></span></button>
+				<a href="home.html" class="header__logo"><img src="img/logo.svg" alt="logo"></a>
+				<div class="header__menu menu">
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li class="menu__item"><a href="home.html" class="menu__link _active">home</a></li>
+							<li class="menu__item"><a href="catalog.html" class="menu__link">Shop</a></li>
+							<li class="menu__item"><a href="article.html" class="menu__link">blog</a></li>
+							<li class="menu__item"><a href="sale.html" class="menu__link">Sale</a></li>
+							<li class="menu__item"><a data-goto-header data-goto="footer" class="menu__link">contact us</a></li>
+						</ul>
+						<button data-search-button type="button" class="menu__search"><span class="_icon-search">search</span></button>
+						<form data-da=".menu__body, 991.98, 0" action="#" class="menu__form form-menu">
+							<input maxlength="50" name="search" autocomplete="off" placeholder="Search" required class="form-menu__search">
+							<button type="button" class="form-menu__button _icon-search"></button>
+						</form>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<ul data-da=".menu__body, 767.98" class="header__acount acount-header">
+						<li class="acount-header__item"><a href="#" class="acount-header__link">SIGN IN</a></li>
+						<li class="acount-header__item"><a href="createacount.html" class="acount-header__link">CREATE AN ACCOUNT</a></li>
+					</ul>
+					<a href="wishlist.html" class="header__favorite _icon-favorite"><span></span></a>
+					<div class="header__cart cart-header">
+						<a href="cart.html" class="cart-header__icon _icon-cart"><span></span></a>
+						<div class="cart-header__body">
+
+							<ul class="cart-header__list">
+								<li class="cart-header__cart-text">Shopping Cart</li>
+								<li class="cart-header__cart-price"><span>0,00</span> EUR</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<section class="page__main main-page">
+				<div class="main-page__container">
+					<div class="main-page__block-controls">
+						<!-- Если нужна пагинация -->
+						<div data-da=".main-page__controls, 767.98, 1" class="main-page__pagination"></div>
+						<!-- Если нужна навигация (влево/вправо) -->
+						<div class="main-page__controls">
+							<button type="button" class="main-page__button-prev button-prev _icon-select"></button>
+							<button type="button" class="main-page__button-next button-next _icon-select"></button>
+						</div>
+					</div>
+					<picture><source srcset="img/main/main_image.webp" type="image/webp"><img class="main-page__image" src="img/main/main_image.jpg" alt="image"></picture>
+					<div class="main-page__body">
+						<div class="main-page__content">
+							<h1 class="main-page__text title">SUMMER SALE GEt <span>30% OFF</span> On all
+								dress.
+							</h1>
+							<a href="#" class="main-page__button button">shop now</a>
+						</div>
+						<!-- Оболочка слайдера -->
+						<div class="main-page__slider swiper">
+							<!-- Двигающееся часть слайдера -->
+							<div class="main-page__wrapper swiper-wrapper">
+								<!-- Слайд -->
+								<div class="main-page__slide slide-main swiper-slide">
+									<div class="slide-main__image">
+										<picture><source srcset="img/main/image2.webp" type="image/webp"><img src="img/main/image2.jpg" alt="image"></picture>
+									</div>
+								</div>
+								<!-- Слайд -->
+								<div class="main-page__slide slide-main swiper-slide">
+									<div class="slide-main__image">
+										<picture><source srcset="img/main/image1.webp" type="image/webp"><img src="img/main/image1.jpg" alt="image"></picture>
+									</div>
+								</div>
+								<!-- Слайд -->
+								<div class="main-page__slide slide-main swiper-slide">
+									<div class="slide-main__image">
+										<picture><source srcset="img/main/image2.webp" type="image/webp"><img src="img/main/image2.jpg" alt="image"></picture>
+									</div>
+								</div>
+								<!-- Слайд -->
+								<div class="main-page__slide slide-main swiper-slide swiper-slide-active">
+									<div class="slide-main__image">
+										<picture><source srcset="img/main/image1.webp" type="image/webp"><img src="img/main/image1.jpg" alt="image"></picture>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<div class="page__brands brands-page">
+				<div class="brands-page__container">
+					<div class="brands-page__wrapper">
+						<h2 class="brands-page__title">chose your brand</h2>
+						<div class="brands-page__items">
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand1.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand2.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand3.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand4.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand5.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand6.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item">
+								<img src="img/brands/brand7.svg" alt="image">
+							</a>
+							<a href="#" class="brands-page__item brands-page__item--mobile">
+								<img src="img/brands/brand4.svg" alt="image">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="page__offers offers-page">
+				<div class="offers-page__container">
+					<div class="offers-page__items">
+						<div data-watch class="offers-page__item item-offers item-offers--reverse">
+							<div class="item-offers__image">
+								<picture><source srcset="img/offers/offer1.webp" type="image/webp"><img src="img/offers/offer1.jpg" alt="image"></picture>
+							</div>
+							<div class="item-offers__body">
+								<div class="item-offers__block-title">
+									<h2 class="item-offers__title">choosе
+										your look</h2>
+									<div class="item-offers__subtitle">See our clothing collections</div>
+								</div>
+								<a href="#" class="item-offers__button button">see offers</a>
+							</div>
+						</div>
+						<div data-watch class="offers-page__item item-offers item-offers--two">
+							<div class="item-offers__image">
+								<picture><source srcset="img/offers/offer2.webp" type="image/webp"><img src="img/offers/offer2.jpg" alt="image"></picture>
+							</div>
+							<div class="item-offers__body">
+								<div class="item-offers__block-title">
+									<h2 class="item-offers__title">Up to
+										40% off</h2>
+									<div class="item-offers__subtitle">Special offers and great deals</div>
+								</div>
+								<a href="#" class="item-offers__button button">shop now</a>
+							</div>
+						</div>
+						<div data-watch class="offers-page__item item-offers">
+							<div class="item-offers__image">
+								<picture><source srcset="img/offers/offer3.webp" type="image/webp"><img src="img/offers/offer3.jpg" alt="image"></picture>
+							</div>
+							<div class="item-offers__body">
+								<div class="item-offers__block-title">
+									<h2 class="item-offers__title">brand new style</h2>
+									<div class="item-offers__subtitle">Popular clothing brands</div>
+								</div>
+								<a href="#" class="item-offers__button button">see offers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<section class="page__shop shop-page">
+				<div class="shop-page__container">
+					<h2 class="shop-page__title section-title">Shop Some Wear:</h2>
+					<aside class="shop-page__side side-shop">
+						<h2 class="side-shop__title section-title">Shop Some Wear:</h2>
+						<form class="side-shop__form form-side">
+							<div class="form-side__checkbox checkbox">
+								<input id="best-sellers" data-error="Ошибка" class="checkbox__input" type="checkbox" value="best-sellers" name="best-sellers">
+								<label for="best-sellers" class="checkbox__label"><span class="checkbox__text">Best
+										Sellers</span></label>
+							</div>
+							<div class="form-side__checkbox checkbox">
+								<input id="new-arrivals" data-error="Ошибка" class="checkbox__input" type="checkbox" value="new-arrivals" name="new-arrivals">
+								<label for="new-arrivals" class="checkbox__label"><span class="checkbox__text">New
+										Arrivals</span></label>
+							</div>
+							<div class="form-side__checkbox checkbox">
+								<input checked id="top-women" data-error="Ошибка" class="checkbox__input" type="checkbox" value="top-women" name="top-women">
+								<label for="top-women" class="checkbox__label"><span class="checkbox__text">Top
+										Women</span></label>
+							</div>
+							<div class="form-side__checkbox checkbox">
+								<input id="summer-collection" data-error="Ошибка" class="checkbox__input" type="checkbox" value="summer-collection" name="summer-collection">
+								<label for="summer-collection" class="checkbox__label"><span class="checkbox__text">Collection: Summer</span></label>
+							</div>
+							<div class="form-side__checkbox checkbox">
+								<input id="spring-collection" data-error="Ошибка" class="checkbox__input" type="checkbox" value="spring-collection" name="spring-collection">
+								<label for="spring-collection" class="checkbox__label"><span class="checkbox__text">Collection: Spring</span></label>
+							</div>
+							<div class="form-side__checkbox checkbox">
+								<input id="trending" data-error="Ошибка" class="checkbox__input" type="checkbox" value="trending" name="top-womens">
+								<label for="trending" class="checkbox__label"><span class="checkbox__text">Trending</span></label>
+							</div>
+						</form>
+					</aside>
+					<div class="shop-page__products">
+						<!-- Top-women -->
+						<article data-product="37" data-brand="state" data-size="w25 w33 w44" data-dress-option="short" data-color="darkblue green darkgraygray" data-price="139" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										Angels malu zip jeans slim black Angels malu zip jeans slim black</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="38" data-brand="state" data-size="w32 w33 w44" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="235" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="39" data-brand="cooper" data-size="w25 w26 w48" data-dress-option="midi" data-color="gray darkblue orange" data-price="90" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="40" data-brand="cooper" data-size="w32 w33 w48" data-dress-option="short" data-color="beige black gray" data-price="139" class="shop-page__product product-shop top-women">
+							<div class="product-shop__sale">-30%</div>
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										jeans slim black malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="41" data-brand="state" data-size="w27 w28 w32" data-dress-option="short" data-color="darkblue beige darkgray" data-price="90" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="42" data-brand="donnaricco" data-size="w27 w28 w33" data-dress-option="short" data-color="darkblue beige darkgray" data-price="139" class="shop-page__product product-shop top-women">
+							<div class="product-shop__sale">-30%</div>
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="43" data-brand="alfani" data-size="w27 w28 w34" data-dress-option="hightlow" data-color="blue pink brown" data-price="90" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="44" data-brand="cooper" data-size="w27 w28 w35" data-dress-option="short" data-color="beige black gray" data-price="90" class="shop-page__product product-shop top-women">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Best Seller -->
+						<article data-product="45" data-brand="bardot" data-size="w27 w28 w36" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="139" class="shop-page__product product-shop best-sellers">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="46" data-brand="alfani" data-size="w27 w28 w38" data-dress-option="hightlow" data-color="blue pink brown" data-price="235" class="shop-page__product product-shop best-sellers">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="47" data-brand="cooper" data-size="w27 w28 w40" data-dress-option="short" data-color="beige black gray" data-price="90" class="shop-page__product product-shop best-sellers">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="48" data-brand="alfani" data-size="w27 w28 w42" data-dress-option="kneelength" data-color="darkgray black beige" data-price="159" class="shop-page__product product-shop best-sellers">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="49" data-brand="alfani" data-size="w27 w28 w44" data-dress-option="hightlow" data-color="blue pink brown" data-price="90" class="shop-page__product product-shop best-sellers">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- New Arrival -->
+						<article data-product="50" data-brand="state" data-size="w27 w28 w46" data-dress-option="short" data-color="darkblue beige darkgray" data-price="90" class="shop-page__product product-shop new-arrivals">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="51" data-brand="state" data-size="w27 w46 w50" data-dress-option="short" data-color="darkblue beige darkgray" data-price="139" class="shop-page__product product-shop new-arrivals">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="52" data-brand="state" data-size="w27 w28 w48" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="235" class="shop-page__product product-shop new-arrivals">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Summer Collection -->
+						<article data-product="53" data-brand="alfani" data-size="w27 w28 w50" data-dress-option="kneelength" data-color="darkgray black beige" data-price="235" class="shop-page__product product-shop summer-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="54" data-brand="bardot" data-size="w27 w28 w52" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="90" class="shop-page__product product-shop summer-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="55" data-brand="state" data-size="w27 w29 w30" data-dress-option="hightlow" data-color="darkblue green darkgraygray" data-price="159" class="shop-page__product product-shop summer-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="56" data-brand="cooper" data-size="w27 w29 w31" data-dress-option="short" data-color="beige black gray" data-price="90" class="shop-page__product product-shop summer-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="57" data-brand="state" data-size="w27 w29 w32" data-dress-option="short" data-color="darkblue beige darkgray" data-price="90" class="shop-page__product product-shop summer-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">90,00 EUR</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Spring Collection -->
+						<article data-product="58" data-brand="cooper" data-size="w27 w29 w33" data-dress-option="short" data-color="beige black gray" data-price="159" class="shop-page__product product-shop spring-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="59" data-brand="state" data-size="w27 w29 w34" data-dress-option="short" data-color="darkblue beige darkgray" data-price="125" class="shop-page__product product-shop spring-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">125,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="60" data-brand="state" data-size="w27 w29 w35" data-dress-option="short" data-color="darkblue beige darkgray" data-price="170" class="shop-page__product product-shop spring-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">170,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="61" data-brand="cece" data-size="w27 w29 w36" data-dress-option="midi" data-color="blue pink brown" data-price="120" class="shop-page__product product-shop spring-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">120,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="62" data-brand="alfani" data-size="w27 w29 w38" data-dress-option="kneelength" data-color="darkgray black beige" data-price="96" class="shop-page__product product-shop spring-collection">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod6.webp" type="image/webp"><img data-prod-img src="img/products/prod6.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">96,00 EUR</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Trending -->
+						<article data-product="63" data-brand="cece" data-size="w27 w29 w40" data-dress-option="midi" data-color="blue pink brown" data-price="139" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">139,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="64" data-brand="alfani" data-size="w27 w29 w42" data-dress-option="kneelength" data-color="darkgray black beige" data-price="235" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod2.webp" type="image/webp"><img data-prod-img src="img/products/prod2.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">235,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="65" data-brand="bardot" data-size="w27 w29 w44" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="156" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod3.webp" type="image/webp"><img data-prod-img src="img/products/prod3.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">156,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="66" data-brand="state" data-size="w27 w29 w46" data-dress-option="short" data-color="darkblue beige darkgray" data-price="159" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod1.webp" type="image/webp"><img data-prod-img src="img/products/prod1.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price product-shop__price--red">139,00 EUR</div>
+									<div class="product-shop__old-price">159,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="67" data-brand="alfani" data-size="w27 w29 w48" data-dress-option="kneelength" data-color="darkgray black beige" data-price="233" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod5.webp" type="image/webp"><img data-prod-img src="img/products/prod5.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">233,00 EUR</div>
+								</div>
+							</div>
+						</article>
+						<article data-product="68" data-brand="bardot" data-size="w27 w29 w50" data-dress-option="hightlow" data-color="lightgreen burgundy darkgraygray" data-price="156" class="shop-page__product product-shop trending">
+							<div class="product-shop__image">
+								<picture>
+									<source srcset="img/products/prod4.webp" type="image/webp"><img data-prod-img src="img/products/prod4.jpg" alt="product">
+								</picture>
+								<div class="product-shop__actions">
+									<button data-addtobag class="product-shop__button button">Add to bag</button>
+									<button data-favorite class="product-shop__button product-shop__button--transp button _icon-favorite">Save</button>
+								</div>
+							</div>
+							<div class="product-shop__body">
+								<div class="product-shop__description">
+									<div class="product-shop__label">TOP women</div>
+									<h4 data-prod-title class="product-shop__title">Angels malu zip jeans slim black
+										used</h4>
+								</div>
+								<div class="product-shop__prices">
+									<div class="product-shop__price">156,00 EUR</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section data-prlx-parent data-smooth="1" data-center="center" class="page__limits limits-page">
+				<div class="limits-page__container">
+					<div class="limits-page__image">
+						<picture><source srcset="img/limits/limits.webp" type="image/webp"><img src="img/limits/limits.jpg" alt="image"></picture>
+					</div>
+					<div data-prlx data-coefficient="13" class="limits-page__body">
+						<h2 class="limits-page__text title">shoping without limits.
+						</h2>
+						<div class="limits-page__subtext">You can choose the best option for you, and it does not matter
+							whether you are in Prague or San Francisco. We will
+							deliver your purchase anywhere!</div>
+						<a href="#" class="limits-page__button button">shop now</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__featured featured-page">
+				<div class="featured-page__container">
+					<div class="featured-page__header">
+						<h2 class="featured-page__title section-title">Featured Items</h2>
+						<div class="featured-page__controls">
+							<button type="button" class="featured-page__button-prev button-prev-transp _icon-select"></button>
+							<button type="button" class="featured-page__button-next button-next-transp _icon-select"></button>
+						</div>
+					</div>
+					<!-- Оболочка слайдера -->
+					<div class="featured-page__slider swiper">
+						<!-- Двигающееся часть слайдера -->
+						<div class="featured-page__wrapper swiper-wrapper">
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod7.webp" type="image/webp"><img src="img/products/prod7.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod2.webp" type="image/webp"><img src="img/products/prod2.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod4.webp" type="image/webp"><img src="img/products/prod4.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod1.webp" type="image/webp"><img src="img/products/prod1.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod6.webp" type="image/webp"><img src="img/products/prod6.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod5.webp" type="image/webp"><img src="img/products/prod5.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod7.webp" type="image/webp"><img src="img/products/prod7.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod6.webp" type="image/webp"><img src="img/products/prod6.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod4.webp" type="image/webp"><img src="img/products/prod4.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="featured-page__slide swiper-slide">
+								<a href="#" class="featured-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod2.webp" type="image/webp"><img src="img/products/prod2.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__popular popular-page">
+				<div class="popular-page__container">
+					<div class="popular-page__header">
+						<h2 class="popular-page__title section-title">Most Popular</h2>
+						<div class="popular-page__controls">
+							<button type="button" class="popular-page__button-prev button-prev-transp _icon-select"></button>
+							<button type="button" class="popular-page__button-next button-next-transp _icon-select"></button>
+						</div>
+					</div>
+					<!-- Оболочка слайдера -->
+					<div class="popular-page__slider swiper">
+						<!-- Двигающееся часть слайдера -->
+						<div class="popular-page__wrapper swiper-wrapper">
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod5.webp" type="image/webp"><img src="img/products/prod5.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod7.webp" type="image/webp"><img src="img/products/prod7.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod6.webp" type="image/webp"><img src="img/products/prod6.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod4.webp" type="image/webp"><img src="img/products/prod4.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod2.webp" type="image/webp"><img src="img/products/prod2.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod7.webp" type="image/webp"><img src="img/products/prod7.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod2.webp" type="image/webp"><img src="img/products/prod2.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod4.webp" type="image/webp"><img src="img/products/prod4.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod1.webp" type="image/webp"><img src="img/products/prod1.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<!-- Слайд -->
+							<div class="popular-page__slide swiper-slide">
+								<a href="#" class="popular-page__product product-shop top-women">
+									<div class="product-shop__image">
+										<picture><source srcset="img/products/prod6.webp" type="image/webp"><img src="img/products/prod6.jpg" alt="product"></picture>
+									</div>
+									<div class="product-shop__body">
+										<div class="product-shop__description">
+											<div class="product-shop__label">TOP women</div>
+											<div class="product-shop__title">Angels malu zip jeans slim black used</div>
+										</div>
+										<div class="product-shop__prices">
+											<div class="product-shop__price">139,00 EUR</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__explore explore-page">
+				<div class="explore-page__container">
+					<div class="explore-page__image">
+						<picture><source srcset="img/explore/explore_image.webp" type="image/webp"><img src="img/explore/explore_image.jpg" alt="image"></picture>
+					</div>
+					<div data-watch class="explore-page__body">
+						<h2 class="explore-page__text title">EXPLORE THE BEST OF YOU.
+						</h2>
+						<div class="explore-page__subtext">You can choose the best option for you, and it does not
+							matter whether you are in Prague or San Francisco.</div>
+						<a href="#" class="explore-page__button button">shop now</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="page__blog blog-page">
+				<div class="blog-page__container">
+					<h2 class="blog-page__title section-title">Blog</h2>
+					<div class="blog-page__items">
+						<article data-watch class="blog-page__item">
+							<a href="#" class="item-blog">
+								<div class="item-blog__label">Article</div>
+								<div class="item-blog__body">
+									<h5 class="item-blog__title">Exactly What To Wear To Every Type Of Wedding This
+										Summer</h5>
+									<div class="item-blog__text">A large part of the business here is building up the
+										"experience". Double-page spreads in magazines. Ads on TV. Product
+										placement and sponsorship in golf tournaments, tennis matches and sailing
+										competitions. All of this builds up your
+										perception of the brand - and additionally, it costs money.</div>
+								</div>
+								<div class="item-blog__footer">21 January 2018 by guido</div>
+							</a>
+						</article>
+						<article data-watch class="blog-page__item">
+							<a href="#" class="item-blog">
+								<div class="item-blog__label">TIPS</div>
+								<div class="item-blog__body">
+									<h5 class="item-blog__title">Exactly What To Wear To Every Type Of Wedding This
+										Summer</h5>
+									<div class="item-blog__text">A large part of the business here is building up the
+										"experience". Double-page
+										spreads in magazines. Ads on TV. Product
+										placement and sponsorship in golf tournaments, tennis matches and sailing
+										competitions. All of this
+										builds up your
+										perception of the brand - and additionally, it costs money.</div>
+								</div>
+								<div class="item-blog__footer">21 January 2018 by guido</div>
+							</a>
+						</article>
+						<article data-watch class="blog-page__item">
+							<a href="#" class="item-blog">
+								<div class="item-blog__label">TIPS</div>
+								<div class="item-blog__body">
+									<h5 class="item-blog__title">Exactly What To Wear To Every Type Of Wedding This
+										Summer</h5>
+									<div class="item-blog__text">A large part of the business here is building up the
+										"experience". Double-page
+										spreads in magazines. Ads on TV. Product
+										placement and sponsorship in golf tournaments, tennis matches and sailing
+										competitions. All of this
+										builds up your
+										perception of the brand - and additionally, it costs money.</div>
+								</div>
+								<div class="item-blog__footer">21 January 2018 by guido</div>
+							</a>
+						</article>
+						<article data-watch class="blog-page__item">
+							<a href="#" class="item-blog">
+								<div class="item-blog__label">Article</div>
+								<div class="item-blog__body">
+									<h5 class="item-blog__title">Exactly What To Wear To Every Type Of Wedding This
+										Summer</h5>
+									<div class="item-blog__text">A large part of the business here is building up the
+										"experience". Double-page
+										spreads in magazines. Ads on TV. Product
+										placement and sponsorship in golf tournaments, tennis matches and sailing
+										competitions. All of this
+										builds up your
+										perception of the brand - and additionally, it costs money.</div>
+								</div>
+								<div class="item-blog__footer">21 January 2018 by guido</div>
+							</a>
+						</article>
+					</div>
+				</div>
+			</section>
+
+
+			<div class="page__advantages advantages-page">
+				<div class="advantages-page__container">
+					<div class="advantages-page__item _icon-checkmark">Duties and Taxes Guaranteed</div>
+					<div class="advantages-page__item _icon-checkmark">Free Express Shipping</div>
+					<div class="advantages-page__item _icon-checkmark">Customer Love</div>
+					<div class="advantages-page__item _icon-checkmark">Easy Returns</div>
+					<div class="advantages-page__item _icon-checkmark">Secure Payment</div>
+				</div>
+			</div>
+
+		</main>
+		<footer class="footer">
+			<div data-spollers="767.98,max" class="footer__container">
+				<div class="footer__column">
+					<a href="#" class="footer__logo"><img src="img/logo.svg" alt="logo"></a>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">features</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">men</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">Women</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">boys</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">girls</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">new arrivals</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">shoes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">cothes</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">accessories</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">Menu</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">About us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">contact us</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">my account</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">orders history</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">MY WISHLIST</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">BLOG</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link">LOGIN</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">contact us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item">Address:<a href="#" class="menu-footer__link">123 STREET NAME, CITY,
+									ENGLAND</a></li>
+							<li class="menu-footer__item">Phone:<a href="tel:1234567890" class="menu-footer__link">(123)
+									456-7890</a></li>
+							<li class="menu-footer__item">email:<a href="mailto:MAIL@EXAMPLE.COM" class="menu-footer__link">MAIL@EXAMPLE.COM</a></li>
+							<li class="menu-footer__item">working days/hours<a href="#" class="menu-footer__link menu-footer__link--static">MON - SUN /
+									9:00AM - 8:00PM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<button type="button" data-spoller class="footer__label">follow us</button>
+					<nav class="footer__menu menu-footer">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-fb">FACEBOOK</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-tw">TWITTER</a></li>
+							<li class="menu-footer__item"><a href="#" class="menu-footer__link _icon-inst">INSTAGRAM</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="footer__column">
+					<div class="footer__label footer__label--static">Join us</div>
+					<form action="#" class="footer__form form-footer">
+						<div class="form-footer__text">Subscribe to our newsletters</div>
+						<div class="form-footer__line">
+							<input type="email" data-req class="form-footer__input" placeholder="Email Address">
+						</div>
+						<div class="form-footer__line">
+							<button type="submit" class="form-footer__button">Subscribe!</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="footer__container-bottom">© 2019. Crisp theme Developed by Belvg</div>
+		</footer>
+	</div>
+	<div id="fls-preloader">
+
+		<!-- Скріпт прелоадера -->
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+						<div class="fls-preloader__body">
+							<div id="loader"></div>
+						</div>
+					</div>`;
+					document.querySelector('html').insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 2000);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20230707183314"></script>
+</body>
+
+</html>
